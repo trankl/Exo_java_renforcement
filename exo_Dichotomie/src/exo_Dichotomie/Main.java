@@ -3,7 +3,7 @@ package exo_Dichotomie;
 import java.util.Arrays;
 
 /* TKL- 4 janv. 2022:
-* Déclarer et remplir de façon incrémentale un tableau de 1 Million de cases avec des valeurs croissantes dans l’ordre.
+ * Déclarer et remplir de façon incrémentale un tableau de 1 Million de cases avec des valeurs croissantes dans l’ordre.
 
 Rechercher une valeur dans le tableau manuellement avec une boucle for
 Rechercher une valeur dans le tableau à l’aide d’un algorithme de dichotomie
@@ -22,7 +22,7 @@ long endTime = System.currentTimeMillis();
 System.out.println("That took " + (endTime - startTime) + " milliseconds");
 
 
-*/
+ */
 
 public class Main {
 
@@ -30,66 +30,89 @@ public class Main {
 		System.out.println("----------EXO DICHOTOMIE-----------------------");
 
 		// declare un tableau de 1 000 000  valeurs
-				int[] tab = new int[1000000];
+		int[] tab = new int[1000000];
 
-				System.out.println(" Affichage du tableau de 1 000 000 valeurs");
+		System.out.println(" Affichage du tableau de 1 000 000 valeurs");
 
-				System.out.println("Remplir les valeurs incrementale au tableau");
-				// ajouter les valeurs valeurs croissantes dans l’ordre et afficher chaque valeur du tableau 
-				for (int i=0; i <1000000; i++) {
-					tab[i] = i;
-					//System.out.print(tab[i]);
-				}
-				System.out.println("\n FINI 2iem tableau");
-		
-				// Chronométrer methode 1
-				long startTime = System.currentTimeMillis();
+		System.out.println("Remplir les valeurs incrementale au tableau");
+		// ajouter les valeurs valeurs croissantes dans l’ordre et afficher chaque valeur du tableau 
+		for (int i=0; i <1000000; i++) {
+			tab[i] = i;
+			//System.out.print(tab[i]);
+		}
 
-				chercherValeurAvecFor(tab);
+		// Chronométrer methode 1
+		long startTime = System.currentTimeMillis();
 
-				long endTime = System.currentTimeMillis();
+		chercherValeurAvecFor(tab);
 
-				System.out.println("Methode FOR prends : " + (endTime - startTime) + " milliseconds");
+		long endTime = System.currentTimeMillis();
 
-				// Chronométrer methode 2
-				startTime = System.currentTimeMillis();
+		System.out.println("Methode FOR prends : " + (endTime - startTime) + " milliseconds");
 
-				chercherValeurAvecDICHOTOMIE(tab);
+		// Chronométrer methode 2
+		startTime = System.currentTimeMillis();
 
-				endTime = System.currentTimeMillis();
+		chercherValeurAvecDICHOTOMIE(tab);
 
-				System.out.println("Methode DICHOTOMI prends : " + (endTime - startTime) + " milliseconds");
-				
-		
+		endTime = System.currentTimeMillis();
+
+		System.out.println("Methode DICHOTOMI prends : " + (endTime - startTime) + " milliseconds");
+
+
 
 	}
 	// Methode 1 :  pour rechercher une valeur dans le tableau manuellement avec une boucle for
 	private static void chercherValeurAvecFor(int[] i_tab) {
-		
-		int  v= 999;
-		
+
+		int  valeur= 999;
+
 		for (int i=0; i <1000000; i++) {
-			if (i_tab[i] == v) {
-				System.out.println("Trouve la valeur v = "+v + " est au indice "+ i + " avec son valeur est "+ i_tab[i]);
+			if (i_tab[i] == valeur) {
+				System.out.println("Trouve la valeur v = "+valeur + " est au indice "+ i + " avec son valeur est "+ i_tab[i]);
 			}
-			
+
 		}
-		
+
 	}
-	
+
 	// Methode 2 :  pour rechercher une valeur dans le tableau à l’aide d’un algorithme de dichotomie
 	// on utlise Arrays.binarySearch(tab,key)
-		private static void chercherValeurAvecDICHOTOMIE(int[] i_tab) {
-			
-			int v = 999;
-		
-			int result = Arrays.binarySearch(i_tab,v);
-			
-			System.out.println("Trouve la valeur v = "+v + " est au indice "+ result);
-				
-			
-		}
-	
-	
+	private static void chercherValeurAvecDICHOTOMIE(int[] i_tab) {
+
+		int valeur = 999;
+
+		// 1iere solution : fonction Arrays.binarySearch(i_tab,valeur)
+		//int result = Arrays.binarySearch(i_tab,valeur);
+
+		// 2ieme solution: algorithme de dichotomie
+		int result = rechDicho1(i_tab, i_tab.length, valeur);
+
+		System.out.println("Trouve la valeur v = "+valeur + " est au indice "+ result);
+
+
+	}
+
+	// Methode 2 :  pour rechercher une valeur dans le tableau à l’aide d’un algorithme de dichotomie
+		// on utlise algorithme de dichotomie
+	private static int rechDicho1(int[] tab, int nbElements, int valeur){
+		boolean trouve = false;
+		int g = 0;
+		int h = nbElements-1;
+		int m;
+		do{
+			m = (g+h)/2;
+			if (tab[m] == valeur){
+				trouve = true;
+			}
+			else if (tab[m] < valeur){
+				g = m+1;
+			}
+			else{
+				h = m-1;
+			}
+		} while (!trouve);
+		return (m);
+	}
 
 }
