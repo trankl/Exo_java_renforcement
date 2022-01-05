@@ -13,6 +13,18 @@ A l’aide d’une boucle for, remplir ensuite l’intégralité du tableau avec
 NOTE : Pour chronométrer d’une façon simple, mettez un system out println avant le calcul et un autre après le calcul.
 Démarrer sur votre montre le chrono lorsque le premier message s’affiche et arrêter le chrono lorsque le message de fin s’affiche.
 
+ 
+ Chronométrer
+long startTime = System.currentTimeMillis();
+
+doReallyLongThing();
+
+long endTime = System.currentTimeMillis();
+
+System.out.println("That took " + (endTime - startTime) + " milliseconds");
+
+
+
  */
 public class Tableau_boucle {
 
@@ -27,7 +39,7 @@ public class Tableau_boucle {
 		// ajouter les valeurs (0) et afficher chaque valeur du tableau 
 		for (int i=0; i <1000000; i++) {
 			tab[i] = 0;
-			System.out.print(tab[i]);
+			//System.out.print(tab[i]);
 		}
 
 		System.out.println("\n FINI 1ier tableau");
@@ -36,9 +48,11 @@ public class Tableau_boucle {
 		// ajouter les valeurs (de 1 à 5) et afficher chaque valeur du tableau 
 		for (int i=0; i <1000000; i++) {
 			tab[i] = i;
-			System.out.print(tab[i]);
+			//System.out.print(tab[i]);
 		}
 		System.out.println("\n FINI 2iem tableau");
+		
+		
 	}
 
 }
