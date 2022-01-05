@@ -8,6 +8,8 @@ import java.util.Arrays;
 Rechercher une valeur dans le tableau manuellement avec une boucle for
 Rechercher une valeur dans le tableau à l’aide d’un algorithme de dichotomie
 
+Attention: algorithme de dichotomie fonction que les tableaux triés dans ordre. 
+
 Chronométrer et comparer les deux solutions
 
 NOTE : Pour remplir le tableau, on utilise l’indice de la case parcourue.
@@ -40,20 +42,23 @@ public class Main {
 			tab[i] = i;
 			//System.out.print(tab[i]);
 		}
+		int valeurAchercher= 999999; 
 
 		// Chronométrer methode 1
 		long startTime = System.currentTimeMillis();
 
-		chercherValeurAvecFor(tab);
+		chercherValeurAvecFor(tab, valeurAchercher);
 
 		long endTime = System.currentTimeMillis();
 
 		System.out.println("Methode FOR prends : " + (endTime - startTime) + " milliseconds");
 
+		
+		
 		// Chronométrer methode 2
 		startTime = System.currentTimeMillis();
 
-		chercherValeurAvecDICHOTOMIE(tab);
+		chercherValeurAvecDICHOTOMIE(tab, valeurAchercher);
 
 		endTime = System.currentTimeMillis();
 
@@ -63,24 +68,28 @@ public class Main {
 
 	}
 	// Methode 1 :  pour rechercher une valeur dans le tableau manuellement avec une boucle for
-	private static void chercherValeurAvecFor(int[] i_tab) {
+	private static void chercherValeurAvecFor(int[] i_tab, int  valeur) {
 
-		int  valeur= 999;
 
-		for (int i=0; i <1000000; i++) {
+		int nboperation = 0; 
+		
+		for (int i=0; i <i_tab.length; i++) {
+			nboperation++;
 			if (i_tab[i] == valeur) {
 				System.out.println("Trouve la valeur v = "+valeur + " est au indice "+ i + " avec son valeur est "+ i_tab[i]);
+				break;
 			}
 
 		}
+		System.out.println("nombre operation pour le boucle for est " + nboperation);
 
 	}
 
 	// Methode 2 :  pour rechercher une valeur dans le tableau à l’aide d’un algorithme de dichotomie
 	// on utlise Arrays.binarySearch(tab,key)
-	private static void chercherValeurAvecDICHOTOMIE(int[] i_tab) {
+	private static void chercherValeurAvecDICHOTOMIE(int[] i_tab, int valeur) {
 
-		int valeur = 999;
+	
 
 		// 1iere solution : fonction Arrays.binarySearch(i_tab,valeur)
 		//int result = Arrays.binarySearch(i_tab,valeur);
@@ -100,7 +109,9 @@ public class Main {
 		int g = 0;
 		int h = nbElements-1;
 		int m;
+		int nboperation = 0; 
 		do{
+			nboperation++; 
 			m = (g+h)/2;
 			if (tab[m] == valeur){
 				trouve = true;
@@ -112,6 +123,8 @@ public class Main {
 				h = m-1;
 			}
 		} while (!trouve);
+		System.out.println("nombre operation pour algorithme de dichotomie est " + nboperation);
+		
 		return (m);
 	}
 
