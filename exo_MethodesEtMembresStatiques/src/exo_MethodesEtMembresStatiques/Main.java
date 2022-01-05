@@ -24,13 +24,13 @@ public class Main {
 		
 		// exécuter la méthode d’incrémentation une seule fois sur l’instance “l_perso1”
 		System.out.println("Lancer du perso1");
-		l_perso1.incrementer();
+		Personnage.incrementer(); // pour l_perso1.incrementer();
 		
 		//puis trois fois sur l’instance “l_perso2”.
 		System.out.println("Lancer du perso2");
-		l_perso2.incrementer();
-		l_perso2.incrementer();
-		l_perso2.incrementer();
+		Personnage.incrementer(); // pour l_perso2.incrementer();
+		Personnage.incrementer();
+		Personnage.incrementer();
 
 	}
 
